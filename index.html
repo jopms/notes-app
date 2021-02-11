@@ -9,13 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 <body>
-
+    <div class="overLay"></div>
     <div class="header">
         <div class="side-bar-button-wrap">
-            <div class="side-bar-button">
-                <button id="side-button" onclick=toggleSideBar()>...</button>
+            <div class="side-bar-button" >
+                <button type="button" id="side-button" onclick="toggleSideBar()" >...</button>
             </div>
             
         </div>
@@ -32,10 +32,20 @@
             <div class="side-option" id="search-notes">Search Notes</div>
             <div class="side-option" id="delete-all">Delete all</div>
         </div>
-        <div class="notes-wrap"></div>
-        <div class="create-button">
-            <button id="add-button">+</button>
+        
+        <div class="add-note-menu" >
+            <div class="note-title"></div>
+            <div class="note-text"></div>
+            <div class="close"><span><i class="far fa-times-circle"></i></span></div>
         </div>
+
+        <div class="notes-wrap"></div>
+        <div class="create-button" >
+            <button type="button" id="add-button" onclick="createNote() " >+</button>
+        </div>
+
+        
+
     </div>
     
     
