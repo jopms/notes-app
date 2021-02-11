@@ -13,6 +13,7 @@
 body{
     margin: 0;
     padding: 0;
+    height: 800px;
 }
 /*Header*/
 .header{
@@ -20,8 +21,8 @@ body{
     height: 7rem;
     background-color: var(--lightBlue);
     color:white;
-    display: flex;
-    justify-content:
+    display:flex;
+    position: fixed;
 }
 
 /*Header - Side bar button*/
@@ -83,12 +84,13 @@ body{
 
 /*Side Bar*/
 .side-bar{
-    display:flex;
-    position: fixed;
-    height: 100%;
+    display: flex;
     flex-direction: column;
+    position:fixed;
+    height: inherit;
     background-color: var(--lightBlue);
     transform: translatex(-100%);
+    background-color: yellow;
 }
 
 .side-option{
@@ -127,13 +129,12 @@ body{
 }
 
 .overLay{
-
-    z-index: -100;
+    z-index: 0;
     opacity: 0;
     position: absolute;
     min-width: 100%;
     min-height: 100%;
-    background-color: rgba(0, 0, 0, 0.219);
+    background-color: rgba(0, 0, 0, 0.822);
 }
 
 .add.add-note-menu{
@@ -146,3 +147,5 @@ body{
     color: var(--darkBlue);
     padding: 5px;
 }
+
+
