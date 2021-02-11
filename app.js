@@ -61,7 +61,7 @@ function closeCreateNote(){
     createNoteObj.opacity(-1);
     overLay.opacity(-1);
     header.zIndex(0);
-    body.overflow("none")
+    body.overflow("unset");
 }
 
 document.getElementsByClassName("close")[0].addEventListener("click", closeCreateNote);
