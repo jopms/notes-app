@@ -15,7 +15,7 @@
     <div class="header">
         <div class="side-bar-button-wrap">
             <div class="side-bar-button">
-                ...
+                <button id="side-button" onclick=toggleSideBar()>...</button>
             </div>
             
         </div>
@@ -28,10 +28,13 @@
     </div>
 
     <div class="main">
-        <div class="side-bar"></div>
+        <div class="side-bar">
+            <div class="side-option" id="search-notes">Search Notes</div>
+            <div class="side-option" id="delete-all">Delete all</div>
+        </div>
         <div class="notes-wrap"></div>
         <div class="create-button">
-            <button id="button">+</button>
+            <button id="add-button">+</button>
         </div>
     </div>
     
