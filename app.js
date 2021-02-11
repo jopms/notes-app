@@ -28,6 +28,11 @@ const header = {
     }
 }
 
+const body = {
+    overflow (t) {
+        document.getElementsByTagName("body")[0].style.overflow =`${t}`
+    } 
+}
 
 function toggleSideBar(){
     let sideBarClass = document.getElementsByClassName("side-bar")[0].style;
@@ -40,6 +45,7 @@ function createNote (){
     overLay.opacity(1);
     createNoteObj.opacity(1);
     header.zIndex(-1);
+    body.overflow("hidden");
 }   
 
 function closeCreateNote(){ 
@@ -47,6 +53,7 @@ function closeCreateNote(){
     createNoteObj.opacity(-1);
     overLay.opacity(-1);
     header.zIndex(0);
+    body.overflow("none")
 }
 
 document.getElementsByClassName("close")[0].addEventListener("click", closeCreateNote);
