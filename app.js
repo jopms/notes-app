@@ -28,6 +28,12 @@ const header = {
     }
 }
 
+const sideBar = {
+    zIndex (n) {
+        document.getElementsByClassName("side-bar")[0].style.zIndex =`${n}`
+    }
+}
+
 const body = {
     overflow (t) {
         document.getElementsByTagName("body")[0].style.overflow =`${t}`
@@ -46,10 +52,12 @@ function createNote (){
     createNoteObj.opacity(1);
     header.zIndex(-1);
     body.overflow("hidden");
+    sideBar.zIndex(-1);
 }   
 
 function closeCreateNote(){ 
     createButton.zIndex(0);
+    sideBar.zIndex(0);
     createNoteObj.opacity(-1);
     overLay.opacity(-1);
     header.zIndex(0);
