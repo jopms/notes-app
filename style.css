@@ -87,10 +87,10 @@ body{
     display: flex;
     flex-direction: column;
     position:fixed;
-    height: inherit;
+    height: 100%;
+    top:7rem;
     background-color: var(--lightBlue);
     transform: translatex(-100%);
-    background-color: yellow;
 }
 
 .side-option{
@@ -135,10 +135,6 @@ body{
     min-width: 100%;
     min-height: 100%;
     background-color: rgba(0, 0, 0, 0.822);
-}
-
-.add.add-note-menu{
-
 }
 
 .close{
