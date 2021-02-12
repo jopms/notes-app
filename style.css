@@ -112,7 +112,7 @@ body{
 .add-note-menu{
     opacity: 0;
     background-color: white;
-    position: absolute;
+    position: fixed;
     height: 15rem;
     min-width: 15rem;
     max-width: auto;
