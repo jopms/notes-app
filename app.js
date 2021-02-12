@@ -53,6 +53,9 @@ function createNote (){
     header.zIndex(-1);
     body.overflow("hidden");
     sideBar.zIndex(-1);
+    
+    changeInputText("refresh");
+
 }   
 
 function closeCreateNote(){ 
@@ -64,5 +67,36 @@ function closeCreateNote(){
     body.overflow("unset");
 }
 
+function changeInputText(refresh){
+    if(document.getElementsByClassName("title")[0].innerHTML === ""){
+        document.getElementsByClassName("title")[0].innerHTML = "Insert title here";
+    }
+    if(document.getElementsByClassName("text")[0].innerHTML === ""){
+        document.getElementsByClassName("text")[0].innerHTML = "Insert text here";
+    }
+
+    if(refresh === "refresh"){
+        console.log("i entered refresh")
+        document.getElementsByClassName("title")[0].innerHTML = "Insert title here";
+        document.getElementsByClassName("text")[0].innerHTML = "Insert text here";
+    }
+}
+
+function clearInput (e){
+    console.log(this.innerHTML);
+    console.log(this.className);
+    if(this.innerHTML === `Insert ${this.className} here`){
+        this.innerHTML = "";
+        console.log("yes im in!");
+    }
+}
+
+function submitNote(){
+
+}
+
 document.getElementsByClassName("close")[0].addEventListener("click", closeCreateNote);
-document.getElementsByClassName("overLay")[0].addEventListener("click", closeCreateNote);
+document.getElementsByClassName("overLay")[0].addEventListener("click", changeInputText);~
+
+document.getElementsByClassName("title")[0].addEventListener("click", clearInput);
+document.getElementsByClassName("text")[0].addEventListener("click", clearInput);

@@ -110,12 +110,12 @@ body{
 }
 
 .add-note-menu{
+    overflow: hidden;
     opacity: 0;
     background-color: white;
     position: fixed;
-    height: 15rem;
     min-width: 15rem;
-    max-width: auto;
+    min-height: 15rem;
     margin: 5.5rem;
     bottom: 0;
     right: 0;
@@ -126,8 +126,13 @@ body{
 }
 
 .note-title{
-    background-color: aqua;
+
 }
+
+.note-text{
+
+}
+
 
 .overLay{
     z-index: 0;
@@ -146,4 +151,56 @@ body{
     padding: 5px;
 }
 
+.title {
+    margin-left: 1rem;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    max-width: 13rem;
+    min-height: 2rem;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    
+  }
 
+.title:focus{
+    outline: none;
+}
+
+.text {
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    max-width: 14.5rem;
+    min-height: 1.6rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3.2rem;
+  }
+
+.text:focus{
+    outline: none;
+}
+
+#submit-button{
+    font-size: 1.3rem;
+    color: white;
+    background-color: var(--darkBlue);
+    position: absolute;
+    height: 3rem;
+    width: 100%;
+    bottom:0;
+    border: none;
+}
+
+#submit-button:active{
+    background-color: var(--mediumBlue);
+    outline:none;
+    border: none;
+}
+
+#submit-button:focus{
+    outline:none;
+}
+  

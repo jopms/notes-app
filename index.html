@@ -36,14 +36,15 @@
         </div>
         
         <div class="add-note-menu" >
-            <div class="note-title"></div>
-            <div class="note-text"></div>
             <div class="close"><span><i class="far fa-times-circle"></i></span></div>
+            <div class="note-title"><span class="title" role="textbox" contenteditable>Insert title here</span></div>
+            <div class="note-text"><span class="text" role="textbox" contenteditable>Insert text here</span></div>
+            <div class="submit-button"><button type="button" id="submit-button" onclick="submitNote()">Submit Note</button></div>
         </div>
 
         <div class="notes-wrap"></div>
         <div class="create-button" >
-            <button type="button" id="add-button" onclick="createNote() " >+</button>
+            <button type="button" id="add-button" onclick="createNote()" >+</button>
         </div>
 
 
