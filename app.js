@@ -5,7 +5,7 @@ const overLay = {
     zIndex (n) {
         document.getElementsByClassName("overLay")[0].style.zIndex=`${n}`
     }
-};
+}
 
 const createNoteObj = {
     opacity (n) {
@@ -47,10 +47,10 @@ const note = {
     }
 }
 
+
 function toggleSideBar(){
     let sideBarClass = document.getElementsByClassName("side-bar")[0].style;
     sideBarClass.transform === "translateX(0%)" ? sideBarClass.transform= "translateX(-100%)" : sideBarClass.transform= "translateX(0%)";
-
 }
 
 
@@ -59,6 +59,7 @@ function changeInputText(refresh){
     if(document.getElementsByClassName("title")[0].innerHTML === ""){
         document.getElementsByClassName("title")[0].innerHTML = "Insert title here";
     }
+    
     if(document.getElementsByClassName("text")[0].innerHTML === ""){
         document.getElementsByClassName("text")[0].innerHTML = "Insert text here";
     }
@@ -87,19 +88,26 @@ function refreshInput (e){
                 e.innerHTML = "Insert text here";
             }
         });
-
-        
     }
-    
-    
 }
 
 function closeNote(){
     (this.parentElement).remove()
 }
 
+function getDate(){
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+    const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date();
 
-
+    let time = `${date.getHours()}:${date.toString().split(" ")[4].split(":")[1]}`;
+    let dayMonth = `${date.toString().split(" ")[2]} ${monthNames[date.getMonth()]}`;
+    let weekDay = weekDays[date.getDay()];
+    document.querySelector(".time").innerHTML = time;
+    document.querySelector(".week-day").innerHTML = weekDay;
+    document.querySelector(".day-month").innerHTML = dayMonth;
+}
 
 
 function addNote(){
@@ -111,16 +119,12 @@ function addNote(){
         <div class="text-note"><span class="text" role="textbox" contenteditable>Insert text here</span></div>
     </div>
         `
-          
         document.querySelectorAll(".close").forEach(e => {e.addEventListener("click", closeNote);});
         document.querySelectorAll(".title").forEach(e => {e.addEventListener("click", clearInput);});
         document.querySelectorAll(".text").forEach(e => {e.addEventListener("click", clearInput);});
         document.getElementsByTagName("body")[0].addEventListener("click",refreshInput);
-        
     }       
-
-
-
-
-//document.getElementsByClassName("title")[0].addEventListener("click", clearInput);
-//document.getElementsByClassName("title")[0].addEventListener("click", clearInput);
+    getDate();
+    setInterval(()=>{getDate();}, 60000);
+    
+    

@@ -106,6 +106,7 @@ body{
     transform: translatex(-100%);
     box-shadow: 2px 2px 6px #000000;
     z-index: 1;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .side-option{
@@ -194,8 +195,11 @@ body{
 .notes-wrap{
     display: flex;
     flex-wrap: wrap;
-    transform: translateX(0%);
     justify-content: center;
+    max-width: 70rem;
     
 }
-
+.notes-wrap-wrap{
+    display: flex;
+    justify-content: center;
+}
