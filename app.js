@@ -50,6 +50,7 @@ const note = {
 function toggleSideBar(){
     let sideBarClass = document.getElementsByClassName("side-bar")[0].style;
     sideBarClass.transform === "translateX(0%)" ? sideBarClass.transform= "translateX(-100%)" : sideBarClass.transform= "translateX(0%)";
+
 }
 
 
@@ -101,7 +102,7 @@ function closeNote(){
 
 
 
-function submitNote(){
+function addNote(){
     document.getElementsByClassName("notes-wrap")[0].innerHTML += 
     `
     <div class ="note" id="note">
@@ -109,11 +110,14 @@ function submitNote(){
         <div class="title-note"><span class="title" role="textbox" contenteditable>Insert title here</span></div>
         <div class="text-note"><span class="text" role="textbox" contenteditable>Insert text here</span></div>
     </div>
-        `    
+        `
+          
         document.querySelectorAll(".close").forEach(e => {e.addEventListener("click", closeNote);});
         document.querySelectorAll(".title").forEach(e => {e.addEventListener("click", clearInput);});
         document.querySelectorAll(".text").forEach(e => {e.addEventListener("click", clearInput);});
-}       document.getElementsByTagName("body")[0].addEventListener("click",refreshInput);
+        document.getElementsByTagName("body")[0].addEventListener("click",refreshInput);
+        
+    }       
 
 
 
