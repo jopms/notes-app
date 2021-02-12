@@ -3,18 +3,18 @@
 }
 :root{
     --veryLightBlue: #b5ccca;
-    --lightBlue: #82A3A1;
+    --lightBlue: #00798c;
     --mediumBlue: #465362;
-    --darkBlue: #011936;
+    --darkBlue: #003d5b;
     --lightGreen: #C0DFA1;
-    --mediumGreen: #9FC490;
+    --mediumGreen: #EDAE49;
     --noteShadow: #1f1f1f7c;
 }
 body{
     margin: 0;
     padding: 0;
+    background-color: white
     height: 1500px;
-    
 }
 /*Header*/
 .header{
@@ -24,7 +24,10 @@ body{
     color:white;
     display:flex;
     position: fixed;
+    z-index: 1;
+    box-shadow: 2px 2px 6px #1f1f1f75;
 }
+
 
 /*Header - Side bar button*/
 .side-bar-button-wrap{
@@ -79,7 +82,7 @@ body{
     color: white;
     border-radius: 50%;
     outline: none;
-    box-shadow: 2px 2px 10px #1f1f1f;
+    box-shadow: 2px 2px 10px #1f1f1f8e;
     
 }
 
@@ -109,98 +112,59 @@ body{
     outline: none;
 }
 
-.add-note-menu{
-    overflow: hidden;
-    opacity: 0;
-    background-color: white;
-    position: fixed;
-    min-width: 15rem;
-    min-height: 15rem;
-    margin: 5.5rem;
-    bottom: 0;
-    right: 0;
-    justify-items: flex-end;
-    align-items: flex-end;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px var(--noteShadow);
-}
 
-.note-title{
-
-}
-
-.note-text{
-
-}
-
-
-.overLay{
-    z-index: 0;
-    opacity: 0;
-    position: absolute;
-    min-width: 100%;
-    height: inherit;
-    background-color: rgba(0, 0, 0, 0.822);
-    
-}
-
-.close{
-    position: absolute;
-    right: 0;
-    color: var(--darkBlue);
-    padding: 5px;
-}
-
-.title {
+.title{
     margin-left: 1rem;
+    margin-right:1rem;
     text-align: center;
     display: block;
     overflow: hidden;
-    max-width: 13rem;
     min-height: 2rem;
     font-size: 1.4rem;
     margin-top: 1rem;
     font-weight: 600;
-    
+    color:rgb(24, 24, 24);
   }
 
 .title:focus{
     outline: none;
 }
 
-.text {
+.text{
     text-align: center;
     display: block;
     overflow: hidden;
-    max-width: 14.5rem;
     min-height: 1.6rem;
     font-size: 1rem;
     margin-top: 1rem;
-    margin-bottom: 3.2rem;
+    padding: 5px;
+    color:rgb(24, 24, 24);
   }
 
 .text:focus{
     outline: none;
 }
 
-#submit-button{
-    font-size: 1.3rem;
-    color: white;
-    background-color: var(--darkBlue);
+.close{
     position: absolute;
-    height: 3rem;
-    width: 100%;
-    bottom:0;
-    border: none;
+    right: 0;
+    color: rgb(24, 24, 24);
+    padding: 5px;
 }
 
-#submit-button:active{
-    background-color: var(--mediumBlue);
-    outline:none;
-    border: none;
+.notes-wrap{
+    display: flex;
+    flex-direction: row;
+    
 }
 
-#submit-button:focus{
-    outline:none;
+.note{
+    position: relative;
+    min-width: 20rem;
+    min-height: 15rem;
+    margin: 8rem 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 3px 10px #1f1f1f46;
+    background-color: var(--mediumGreen);
 }
-  
