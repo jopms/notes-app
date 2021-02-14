@@ -5,7 +5,6 @@ const storage = {
 function Note (title = "Insert title here", text ="Insert text here"){
     this.title = title;
     this.text = text;
-    
 }
 
 function toggleSideBar(){
@@ -22,14 +21,12 @@ function clearInput (e){
 function refreshInput (e){
     if(e.target.className != "note" && e.target.className != "title" && e.target.className != "text-note" && e.target.className != "title-note" && e.target.className != "text" && e.target.className != "far fa-times-circle" && e.target.className != "close"){
         document.querySelectorAll(".title").forEach(e => {
-            
             if(e.innerHTML==="" ){
                 e.innerHTML = "Insert title here";
                 updateLocalStorageData ();
             }
         });
         document.querySelectorAll(".text").forEach(e => {
-            
             if(e.innerHTML===""){
                 e.innerHTML  = "Insert text here";
                 updateLocalStorageData ();
@@ -60,7 +57,6 @@ function printNotesHtml(title, text){
             <div class="close"><span><i class="far fa-times-circle"></i></span></div>
             <div class="title-note"><span class="title" role="textbox" contenteditable>${title}</span></div>
             <div class="text-note"><span class="text" role="textbox" contenteditable>${text}</span></div>
-            <div class="expand"><i class="fas fa-angle-double-down"></i></div>
         </div> 
         `);
 }        
@@ -100,8 +96,3 @@ getNotesFromLocalStorage();
     
 getDate();
 setInterval(()=>{getDate();}, 60000);
-
-  
-        
-    
-    
