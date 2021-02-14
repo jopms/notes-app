@@ -165,7 +165,14 @@ body{
     margin-top: 1rem;
     padding: 5px;
     color:#121212;
-  }
+    word-wrap: break-word;
+    width: 19rem;
+}
+
+.text:hover{
+    cursor: pointer;
+}
+
 
 .text:focus{
     outline: none;
@@ -184,12 +191,12 @@ body{
     position: relative;
     min-width: 20rem;
     min-height: 15rem;
+    max-height: 15rem;
     margin: 1rem 1rem;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 2px 3px 10px #000000;
     background-color: var(--mediumGreen);
-    transform: translateX(0%);
 }
 
 .notes-wrap{
@@ -203,3 +210,22 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.expand{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    height: 2.5rem;
+    bottom: 0;
+}
+
+.fas{
+    font-size: 1.8rem;
+    
+}
+
+.expand:hover{
+    cursor: pointer;
+}
+
