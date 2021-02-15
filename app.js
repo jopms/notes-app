@@ -1,5 +1,17 @@
 var list = [];
 
+const sidebar = {
+    closeAll(){
+        localStorage.removeItem('list');
+        localStorage.removeItem('nextIndex');
+        getNotesFromLocalStorage();
+        $('.note').each(function(){this.remove();})
+        list =[];
+        localStorage.setItem('nextIndex', 0);
+    }
+
+}
+
 const storage = {
     nextIndex : 0
 }
@@ -14,6 +26,9 @@ function Note (title = "Insert title here", text ="Insert text here", index, res
 function toggleSideBar(){
     let sideBarClass = document.getElementsByClassName("side-bar")[0].style;
     sideBarClass.transform === "translateX(0%)" ? sideBarClass.transform= "translateX(-100%)" : sideBarClass.transform= "translateX(0%)";
+    $('#delete-all').on('click', function() {
+        sidebar.closeAll()
+    });
 }
 
 function clearInput (e){
@@ -26,13 +41,17 @@ function removeNoteFromLocalStorage(id) {
     let removeFromList = 0;
     $(".note").each(function(){
         if(this.id === id){
-        this.remove();
-        let storageList = JSON.parse(localStorage.getItem('list'));
-        let newList =storageList.filter(function(note,index){
-            return (note.index != id);
+            this.remove();
+            let storageList = JSON.parse(localStorage.getItem('list'));
+            let newList = storageList.filter(function(note,index){
+                
+            return (note.index != id.match(/\d+/)[0]);
         }); 
+        
         list = newList;
         localStorage.setItem('list',JSON.stringify(newList));
+        
+        console.log(newList);
     } });
 }
 
@@ -55,8 +74,8 @@ function refreshInput (e){
 
 function closeNote(){
     removeNoteFromLocalStorage(this.parentElement.id);
-    
 }
+
 
 
 
@@ -121,9 +140,9 @@ function eventListener (){
     $(".text").keyup(function (e) {  
     let change = (e.target.innerHTML).replace(/&nbsp;/g, '');
     updateLocalStorageData (e.target.parentElement.parentElement.id,"text",change);
-
-
     });
+    
+
 }
 
 function updateLocalStorageData (id,whatChanged,variable){
@@ -159,8 +178,16 @@ function updateLocalStorageData (id,whatChanged,variable){
 }
     
 function getNotesFromLocalStorage(){
-    $(".notes-wrap").html(localStorage.getItem('dataOfHtml'));
-    eventListener ();
+    if(localStorage.getItem('list')!= null){
+        JSON.parse(localStorage.getItem('list')).forEach(note => {
+            printNotesHtml(note.title,note.text,note.index);
+    });
+}
+
+    if(localStorage.getItem('list')==null){
+        
+    }
+eventListener ();
 }        
 
 getNotesFromLocalStorage();
