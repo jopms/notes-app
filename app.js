@@ -8,7 +8,8 @@ const sidebar = {
         $('.note').each(function(){this.remove();})
         list =[];
         localStorage.setItem('nextIndex', 0);
-    }
+    },
+    darkMode : 1
 }
 
 const search = {
@@ -94,6 +95,8 @@ function refreshInput (e){
     if(e.target.className != "fas fa-bars" && e.target.className != "search-option active"){
         $('.search-by-option').fadeOut();
     }
+
+
 }
 
 
@@ -229,7 +232,7 @@ function eventListener (){
     $(".title").each(function(){this.addEventListener("focus", clearInput);})
     $(".text").each(function(){this.addEventListener("click", clearInput);})
     $(".text").each(function(){this.addEventListener("focus", clearInput);})
-
+    $('#options').on('click',function(){ $("#dark-mode").fadeToggle(); })
     $("body")[0].addEventListener("click",refreshInput);
     $(".resize").each(function(){this.addEventListener("click", updateResize);})
     $(".title").keyup(function (e) {
@@ -286,12 +289,55 @@ function startEventListener (){
     });
 
     $("body")[0].addEventListener('click', function(e){
-        if(e.target.className != 'side-bar' &&e.target.className != 'side-option' && e.target.id != 'side-button' && $('.side-bar').css('transform') != "matrix(1, 0, 0, 1, -144, 0)"){
-            $('.side-bar').css('transform','translateX(-100%)'); 
+        if(e.target.className != 'side-bar' &&e.target.className != 'side-option' &&  e.target.className != 'sub-side-option' &&e.target.className != 'slider round' && e.target.id != 'side-button' && $('.side-bar').css('transform') != "matrix(1, 0, 0, 1, -144, 0)"){
+            console.log(e.target);
+            $('.side-bar').css('transform','translateX(-100%)');
+            $("#dark-mode").fadeToggle(); 
         }
     });
 
 
+}
+
+function darkMode(){
+    let root = document.documentElement;
+    if(sidebar.darkMode === 1) {
+        sidebar.darkMode = 0; 
+        root.style.setProperty('--header', '#e9e9e9');
+        root.style.setProperty('--mainColor', '#85C7F2');
+        root.style.setProperty('--background', '#fafafa');
+        root.style.setProperty('--button', '#d4d4d4');
+        root.style.setProperty('--text', '#121212');
+        root.style.setProperty('--noteText', '#121212');
+        root.style.setProperty('--active', '#7e7e7e');
+        root.style.setProperty('--scroll', '#292929');
+        root.style.setProperty('--scrollHover', '#3a3a3a');
+        root.style.setProperty('--search', '#cacaca');
+        root.style.setProperty('--searchButton', '#757575');
+        root.style.setProperty('--sideOptionBackground', '#bdbdbd');
+        root.style.setProperty('--SubSideOptionBackground', '#dddddd');
+        root.style.setProperty('--shadow', '#00000044');
+    }
+    else{
+        sidebar.darkMode = 1
+        root.style.setProperty('--header', '#1F1F1F');
+        root.style.setProperty('--mainColor', '#EDAE49');
+        root.style.setProperty('--background', '#121212');
+        root.style.setProperty('--button', '#070707');
+        root.style.setProperty('--text', '#E1E1E1');
+        root.style.setProperty('--noteText', '#121212');
+        root.style.setProperty('--active', '#363636');
+        root.style.setProperty('--scroll', '#292929');
+        root.style.setProperty('--scrollHover', '#3a3a3a');
+        root.style.setProperty('--search', '#0e0e0e');
+        root.style.setProperty('--searchButton', '#757575');
+        root.style.setProperty('--sideOptionBackground', '#0e0e0e');
+        root.style.setProperty('--SubSideOptionBackground', '#161616');
+        root.style.setProperty('--shadow', '#000000');
+    }
+    
+
+    
 }
 
 function getNotesFromLocalStorage(){

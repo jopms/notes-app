@@ -2,30 +2,37 @@
     font-family: 'Open Sans', sans-serif;
 }
 :root{
-    --veryLightBlue: #b5ccca;
-    --lightBlue: #1F1F1F;
-    --mediumBlue: #465362;
-    --darkBlue: #292929;
-    --lightGreen: #C0DFA1;
-    --mediumGreen: #EDAE49;
-    --noteShadow: #1f1f1f7c;
+    --header: #1F1F1F;
+    --mainColor: #EDAE49;
+    --background: #121212;
+    --button: #070707;
+    --text: #E1E1E1;
+    --noteText:#121212;
+    --active: #363636;
+    --scroll: #292929;
+    --scrollHover: #3a3a3a;
+    --search: #0e0e0e;
+    --searchButton: #757575;
+    --sideOptionBackground: #0e0e0e;
+    --SubSideOptionBackground: #161616;
+    --shadow: #000000;
 }
 body{
     margin: 0;
     padding: 0;
-    background-color: #121212;
+    background-color: var(--background);
     height:100vh;
 }
 /*Header*/
 .header{
     width: 100%;
     height: 7rem;
-    background-color: var(--lightBlue);
-    color:#E1E1E1;
+    background-color: var(--header);
+    color: var(--text);
     display:flex;
     position: fixed;
     z-index: 1;
-    box-shadow: 2px 2px 6px #000000;
+    box-shadow: 2px 2px 6px var(--shadow);
 }
 
 .spacer{
@@ -89,22 +96,22 @@ body{
     font-size: 2.5rem;
     width: 4rem;
     height: 4rem;
-    background-color: var(--darkBlue);
+    background-color: var(--button);
     border-color: transparent;
-    color: #E1E1E1;
+    color: var(--text);
     border-radius: 50%;
     outline: none;
-    box-shadow: 2px 2px 10px #000000;
+    box-shadow: 2px 2px 10px var(--shadow);
     
 }
 
 #add-button:hover{
-    background-color: #3b3b3b;
+    background-color: var(--active);
     cursor: pointer;
 }
 
 #add-button:active{
-    background-color: var(--darkBlue);
+    background-color: var(--header);
     cursor: pointer;
 }
 
@@ -116,34 +123,28 @@ body{
     height: 100%;
     width: 9rem;
     top:7rem;
-    background-color: var(--lightBlue);
+    background-color: var(--header);
     transform: translatex(-100%);
-    box-shadow: 2px 2px 6px #000000;
+    box-shadow: 2px 2px 6px var(--shadow);
     z-index: 1;
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.side-option{
-    text-align: center;
-    padding: 8px;
-    background-color: #0e0e0e;
-    color: #E1E1E1;
-}
 
 .side-option:hover{
-    background-color: #252525;
+    background-color: var(--active);
     cursor: pointer;    
 }
 
 .side-option:active{
-    background-color: #363636;    
+    background-color: var(--active);    
 }
 
 #side-button{
     background-color: transparent;
     border: transparent;
     font-size: 1.5rem;
-    color:#E1E1E1;
+    color:var(--text);
     outline: none;
 }
 
@@ -161,7 +162,7 @@ body{
     font-size: 1.4rem;
     margin-top: 1rem;
     font-weight: 600;
-    color:#121212;
+    color: var(--noteText);
     max-width: 275px;
     max-height: 92px;
     overflow: auto;
@@ -178,10 +179,11 @@ body{
     font-size: 1rem;
     margin-top: 1rem;
     padding: 5px;
-    color:#121212;
+    color: var(--noteText);
     width: 19rem;
     max-height: 15rem;
     overflow: auto;
+  
 
 }
 
@@ -197,7 +199,7 @@ body{
 .close{
     position: absolute;
     right: 0;
-    color: #121212;
+    color: var(--noteText);
     padding: 5px;
 }
 
@@ -213,8 +215,9 @@ body{
     margin: 1rem 1rem;
     border-radius: 10px;
     overflow:hidden;
-    box-shadow: 2px 3px 10px #000000;
-    background-color: var(--mediumGreen);
+    box-shadow: 2px 3px 10px var(--shadow);
+    background-color: var(--mainColor);
+    
 }
 
 .notes-wrap{
@@ -260,14 +263,14 @@ body{
     height: 13px;
    }
    ::-webkit-scrollbar-thumb {
-    background: #292929;
+    background: var(--scroll);
     border-radius: 9px;
    }
    ::-webkit-scrollbar-thumb:hover{
-    background: #3a3a3a;
+    background: var(--scrollHover);
    }
    ::-webkit-scrollbar-track{
-    background: #121212;
+    background: var(--background);
     border-radius: 15px;
 }
 
@@ -297,9 +300,9 @@ body{
     height: 3rem;
     width: 20rem;
     text-align: center;
-    background-color: #363636;
+    background-color: var(--search);
     border:transparent;
-    color:#E1E1E1;
+    color:var(--text);
     font-size: 1.1rem;
 }
 
@@ -307,7 +310,7 @@ body{
     font-size: 1.5rem;
     position: absolute;
     z-index: 1;
-    color: #757575;
+    color: var(--searchButton);
     margin-left: 17.5rem;
 }
 
@@ -329,7 +332,7 @@ ul {
     position: absolute;
     margin-top: 6.5rem;
     margin-left: 11.3rem;
-    box-shadow: 2px 2px 5px #000000;
+    box-shadow: 2px 2px 5px var(--shadow);
     display: none;
     
 }
@@ -337,14 +340,101 @@ ul {
 .search-option{
     display: flex;
     padding: 8px;
-    background-color: #0e0e0e;
-    color: #E1E1E1;
+    background-color: var(--sideOptionBackground);
+    color: var(--text);
 }
 
 .search-option:hover, .active{
     cursor: pointer;
-    background-color: #363636; 
+    background-color: var(--active); 
 }
 
 
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--mainColor);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--mainColor);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+
+.side-option{
+    background-color: var(--sideOptionBackground);
+    margin:0;
+    padding: 8px;
+    text-align: center;
+    color: var(--text);
+}
+
+.sub-side-option{       
+    display: none;
+    background-color: var(--SubSideOptionBackground);
+    margin:0;
+    padding: 8px;
+    text-align: center;
+    color: var(--text);
+}
+
+.sub-side-option:hover{
+    background-color: var(--active);
+    cursor: pointer;    
+}
+
+.sub-side-option:active{
+    background-color: var(--active);    
+}
