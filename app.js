@@ -17,13 +17,13 @@ const search = {
         this.searchType = "title";
         $('#byTitle').addClass("active");
         $('#byText').removeClass("active");
-        
-
+        searchNote('update');
     },
     byText(){
         this.searchType = "text";
         $('#byText').addClass("active");
         $('#byTitle').removeClass("active");
+        searchNote('update');
     }
 }
 
@@ -70,7 +70,7 @@ function removeNoteFromLocalStorage(id) {
         
         list = newList;
         localStorage.setItem('list',JSON.stringify(newList));
-        
+
         
     } });
 }
@@ -96,9 +96,7 @@ function refreshInput (e){
     }
 }
 
-function displayOnlySearched(note){
-    
-}
+
 
 function closeNote(){
     removeNoteFromLocalStorage(this.parentElement.id);
@@ -149,10 +147,15 @@ function printSearchedHtml (note,newlist){
 
 
 function searchNote(note){
+
+    if(note==='update'){ //Note is only update when user changes the search by option.
+        searchNote($('.search').val());
+        return;
+    }
+
     let display = [];
     let newlist = JSON.parse(localStorage.getItem('list'));
     
-
     if(search.searchType === "title"){
     newlist.forEach(element => {
         if((element.title).toLowerCase().includes(note.toLowerCase()) === true){
@@ -166,10 +169,29 @@ function searchNote(note){
             display.push(element);
         }
     });
-    }
+
+}
 
     printSearchedHtml(display,newlist);
     $(".close").each(function(){this.addEventListener("click", closeNote);})
+    $(".title").each(function(){this.addEventListener("click", clearInput);})
+    $(".title").each(function(){this.addEventListener("focus", clearInput);})
+    $(".text").each(function(){this.addEventListener("click", clearInput);})
+    $(".text").each(function(){this.addEventListener("focus", clearInput);})
+
+    $("body")[0].addEventListener("click",refreshInput);
+    $(".resize").each(function(){this.addEventListener("click", updateResize);})
+    $(".title").keyup(function (e) {
+    let change = (e.target.innerHTML).replace(/&nbsp;/g, '');
+    updateLocalStorageData (e.target.parentElement.parentElement.id,"title",change);
+    });
+    $(".text").keyup(function (e) {  
+    let change = (e.target.innerHTML).replace(/&nbsp;/g, '');
+    updateLocalStorageData (e.target.parentElement.parentElement.id,"text",change);
+    });
+    
+
+
 }
 
 
@@ -201,8 +223,8 @@ function updateResize(){
 }
     
 function eventListener (){
-    $(".close").each(function(){this.addEventListener("click", closeNote);})
     
+    $(".close").each(function(){this.addEventListener("click", closeNote);})
     $(".title").each(function(){this.addEventListener("click", clearInput);})
     $(".title").each(function(){this.addEventListener("focus", clearInput);})
     $(".text").each(function(){this.addEventListener("click", clearInput);})
