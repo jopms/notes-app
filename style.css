@@ -14,6 +14,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: #121212;
+    height:100vh;
 }
 /*Header*/
 .header{
@@ -51,22 +52,26 @@ body{
 /*Header - Clock wrap*/
 .clock{
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    width: 7.2rem;
+    align-items: flex-end;
+    margin-right: 20px;
 }
 
 .time{
     font-size: 2rem;
+    width: 85px;
 }
 
 .week-day{
     font-size: 1.3rem;
+    width: 85px;
 }
 
 .day-month{
     font-size: 0.9rem;
+    width: 85px;
 }
 
 /*Add Button*/
@@ -93,6 +98,16 @@ body{
     
 }
 
+#add-button:hover{
+    background-color: #3b3b3b;
+    cursor: pointer;
+}
+
+#add-button:active{
+    background-color: var(--darkBlue);
+    cursor: pointer;
+}
+
 /*Side Bar*/
 .side-bar{
     display: flex;
@@ -112,7 +127,7 @@ body{
     text-align: center;
     padding: 8px;
     background-color: #0e0e0e;
-    color: #E1E1E1
+    color: #E1E1E1;
 }
 
 .side-option:hover{
@@ -142,12 +157,14 @@ body{
     margin-right:1rem;
     text-align: center;
     display: block;
-    overflow: hidden;
     min-height: 2rem;
     font-size: 1.4rem;
     margin-top: 1rem;
     font-weight: 600;
     color:#121212;
+    max-width: 275px;
+    max-height: 92px;
+    overflow: auto;
   }
 
 .title:focus{
@@ -184,7 +201,9 @@ body{
     padding: 5px;
 }
 
-
+.close:hover{
+    cursor: pointer;
+}
 
 .note{
     position: relative;
@@ -219,10 +238,17 @@ body{
     bottom: 0;
 }
 
-.fas{
-    font-size: 1.8rem;
-    
+.fa-times-circle{
+    font-size: 1.3rem;
 }
+
+
+
+.fa-bars:hover{
+    cursor: pointer;
+}
+
+
 
 .expand:hover{
     cursor: pointer;
@@ -238,7 +264,7 @@ body{
     border-radius: 9px;
    }
    ::-webkit-scrollbar-thumb:hover{
-    background: linear-gradient(13deg, #c7ceff 14%,#f9d4ff 64%);
+    background: #3a3a3a;
    }
    ::-webkit-scrollbar-track{
     background: #121212;
@@ -257,3 +283,68 @@ body{
 .resize:hover{
     cursor: zoom-in;
 }
+
+.search-bar{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+}
+
+.search{
+    border-radius: 25px;
+    height: 3rem;
+    width: 20rem;
+    text-align: center;
+    background-color: #363636;
+    border:transparent;
+    color:#E1E1E1;
+    font-size: 1.1rem;
+}
+
+.fa-bars{
+    font-size: 1.5rem;
+    position: absolute;
+    z-index: 1;
+    color: #757575;
+    margin-left: 17.5rem;
+}
+
+.search:focus{
+    outline:none;
+}
+
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    
+}
+
+.search-by-option{
+    position: absolute;
+    margin-top: 6.5rem;
+    margin-left: 11.3rem;
+    box-shadow: 2px 2px 5px #000000;
+    display: none;
+    
+}
+
+.search-option{
+    display: flex;
+    padding: 8px;
+    background-color: #0e0e0e;
+    color: #E1E1E1;
+}
+
+.search-option:hover, .active{
+    cursor: pointer;
+    background-color: #363636; 
+}
+
+
+

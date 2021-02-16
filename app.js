@@ -9,12 +9,28 @@ const sidebar = {
         list =[];
         localStorage.setItem('nextIndex', 0);
     }
+}
 
+const search = {
+    searchType: "title",
+    byTitle(){
+        this.searchType = "title";
+        $('#byTitle').addClass("active");
+        $('#byText').removeClass("active");
+        
+
+    },
+    byText(){
+        this.searchType = "text";
+        $('#byText').addClass("active");
+        $('#byTitle').removeClass("active");
+    }
 }
 
 const storage = {
     nextIndex : 0
 }
+
 
 function Note (title = "Insert title here", text ="Insert text here", index, resize = 0){
     this.title = title;
@@ -27,8 +43,11 @@ function toggleSideBar(){
     let sideBarClass = document.getElementsByClassName("side-bar")[0].style;
     sideBarClass.transform === "translateX(0%)" ? sideBarClass.transform= "translateX(-100%)" : sideBarClass.transform= "translateX(0%)";
     $('#delete-all').on('click', function() {
-        sidebar.closeAll()
+        sidebar.closeAll();
     });
+
+
+
 }
 
 function clearInput (e){
@@ -41,7 +60,8 @@ function removeNoteFromLocalStorage(id) {
     let removeFromList = 0;
     $(".note").each(function(){
         if(this.id === id){
-            this.remove();
+            $(`#${this.id}`).animate({opacity: '0'},300, function(){this.remove()});
+            
             let storageList = JSON.parse(localStorage.getItem('list'));
             let newList = storageList.filter(function(note,index){
                 
@@ -51,7 +71,7 @@ function removeNoteFromLocalStorage(id) {
         list = newList;
         localStorage.setItem('list',JSON.stringify(newList));
         
-        console.log(newList);
+        
     } });
 }
 
@@ -70,6 +90,14 @@ function refreshInput (e){
             }
         });
     }
+
+    if(e.target.className != "fas fa-bars" && e.target.className != "search-option active"){
+        $('.search-by-option').fadeOut();
+    }
+}
+
+function displayOnlySearched(note){
+    
 }
 
 function closeNote(){
@@ -93,12 +121,57 @@ function printNotesHtml(title, text, id){
     `
     <div class ="note" id="note${id}">
         <div class="close"><span><i class="far fa-times-circle"></i></span></div>
-        <div class="title-note"><span class="title" role="textbox" contenteditable>${title}</span></div>
-        <div class="text-note"><span class="text" id="text${id}" role="textbox" contenteditable>${text}</span></div>
+        <div class="title-note"><span class="title" role="textbox" contenteditable >${title}</span></div>
+        <div class="text-note"><span class="text" id="text${id}" role="textbox" contenteditable >${text}</span></div>
         <div class ="resize"></div>
     </div> 
     `);
-}        
+}
+
+function printSearchedHtml (note,newlist){
+    let display = "";
+    
+    for(let i=0; i< note.length; i++){
+        display+= `
+        <div class ="note" id="note${note[i].index}">
+            <div class="close"><span><i class="far fa-times-circle"></i></span></div>
+            <div class="title-note"><span class="title" role="textbox" contenteditable>${note[i].title}</span></div>
+            <div class="text-note"><span class="text" id="text${note[i].index}" role="textbox" contenteditable>${note[i].text}</span></div>
+            <div class ="resize"></div>
+        </div> 
+        `
+        
+    }
+    
+    $(".notes-wrap").html(display);
+
+}
+
+
+function searchNote(note){
+    let display = [];
+    let newlist = JSON.parse(localStorage.getItem('list'));
+    
+
+    if(search.searchType === "title"){
+    newlist.forEach(element => {
+        if((element.title).toLowerCase().includes(note.toLowerCase()) === true){
+            display.push(element);
+        }
+    });
+
+    }else{
+    newlist.forEach(element => {
+        if((element.text).toLowerCase().includes(note.toLowerCase()) === true){
+            display.push(element);
+        }
+    });
+    }
+
+    printSearchedHtml(display,newlist);
+    $(".close").each(function(){this.addEventListener("click", closeNote);})
+}
+
 
 function addNote(){
     if(storage.nextIndex== "0" && localStorage.getItem('nextIndex')!=undefined)storage.nextIndex=localStorage.getItem('nextIndex');
@@ -121,7 +194,7 @@ function addNote(){
 }  
 
 function updateResize(){
-    console.log(this.parentElement.id);
+    
     updateLocalStorageData(this.parentElement.id, "resize");
     
     
@@ -129,8 +202,12 @@ function updateResize(){
     
 function eventListener (){
     $(".close").each(function(){this.addEventListener("click", closeNote);})
+    
     $(".title").each(function(){this.addEventListener("click", clearInput);})
+    $(".title").each(function(){this.addEventListener("focus", clearInput);})
     $(".text").each(function(){this.addEventListener("click", clearInput);})
+    $(".text").each(function(){this.addEventListener("focus", clearInput);})
+
     $("body")[0].addEventListener("click",refreshInput);
     $(".resize").each(function(){this.addEventListener("click", updateResize);})
     $(".title").keyup(function (e) {
@@ -141,8 +218,12 @@ function eventListener (){
     let change = (e.target.innerHTML).replace(/&nbsp;/g, '');
     updateLocalStorageData (e.target.parentElement.parentElement.id,"text",change);
     });
-    
-
+    $('.search').keyup(function(e){
+        searchNote(e.target.value);
+    })
+    $('.search-option').click(function(){
+        this.id === "byTitle" ? search.byTitle() : search.byText();
+    })
 }
 
 function updateLocalStorageData (id,whatChanged,variable){
@@ -176,21 +257,32 @@ function updateLocalStorageData (id,whatChanged,variable){
     localStorage.setItem('list', (JSON.stringify(temporaryList)) );
     list = temporaryList; 
 }
-    
+
+function startEventListener (){
+    $('.fa-bars').click(function () {
+        $('.search-by-option').fadeToggle();
+    });
+
+    $("body")[0].addEventListener('click', function(e){
+        if(e.target.className != 'side-bar' &&e.target.className != 'side-option' && e.target.id != 'side-button' && $('.side-bar').css('transform') != "matrix(1, 0, 0, 1, -144, 0)"){
+            $('.side-bar').css('transform','translateX(-100%)'); 
+        }
+    });
+
+
+}
+
 function getNotesFromLocalStorage(){
     if(localStorage.getItem('list')!= null){
         JSON.parse(localStorage.getItem('list')).forEach(note => {
             printNotesHtml(note.title,note.text,note.index);
     });
+}   
+eventListener ();
 }
 
-    if(localStorage.getItem('list')==null){
-        
-    }
-eventListener ();
-}        
 
 getNotesFromLocalStorage();
-    
+startEventListener ();
 getDate();
 setInterval(()=>{getDate();}, 60000);
